@@ -13,5 +13,15 @@ namespace Test
         {
 
         }
+
+        protected void lbtnCompose_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnInbox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
