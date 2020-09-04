@@ -49,10 +49,12 @@ namespace Test.View
             //Save the File to the Directory (Folder).
             ImgFileUpload.SaveAs(folderPath + Path.GetFileName(ImgFileUpload.FileName));
 
-            Label2.Text = ImgFileUpload.FileName;
+            //Label2.Text = ImgFileUpload.FileName;
 
             //Display the Picture in Image control.
             imgCard.ImageUrl = "Test/Images/Thanks Card (Without Name).png" + Path.GetFileName(ImgFileUpload.FileName);
+
+            Label2.Text = "Test/Images/Thanks Card (Without Name).png" + Path.GetFileName(ImgFileUpload.FileName);
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
