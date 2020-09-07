@@ -11,8 +11,5 @@ namespace Test.Model
         public bool IsActive { get; set; }
         public DateTime timeStamp { get; set; }
         public long? Role_ID { get; set; }
-        public long? myID { get; set; }
-        public long? test2_ID { get; set; }
-        public long? yaminID { get; set; }
     }
 }
