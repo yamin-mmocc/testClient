@@ -12,6 +12,7 @@ namespace Test.Model
         public DateTime timeStamp { get; set; }
         public long? Role_ID { get; set; }
 
-        public long? test_ID { get; set; }
+        public long? testing_ID { get; set; }
+        public long? test2_ID { get; set; }
     }
 }
