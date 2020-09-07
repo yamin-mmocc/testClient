@@ -110,6 +110,9 @@ namespace Test.View
             GridView1.DataSource = reservationList;
             GridView1.DataBind();
 
+            ListView1.DataSource = reservationList;
+            ListView1.DataBind();
+
         }
 
 

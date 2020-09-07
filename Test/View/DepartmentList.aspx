@@ -17,6 +17,8 @@
                     <asp:BoundField DataField="timestamp" HeaderText="Time Stamp" Visible="False" />
                 </Columns>
             </asp:GridView>
+
+            <asp:ListView ID="ListView1" runat="server"></asp:ListView>
         </div>
     </form>
 </body>

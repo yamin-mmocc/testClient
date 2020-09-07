@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Test.Model;
+using Xceed.Wpf.Toolkit;
 
 namespace Test.View
 {
@@ -48,10 +49,21 @@ namespace Test.View
             var response = client.PostAsync(url, data).Result;
 
             string result = response.Content.ReadAsStringAsync().Result;
-
-
+                      
             Label6.Text = result.ToString();
+
+            //messagebox
+            string message = "Order Placed Successfully.";
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("window.onload=function(){");
+            sb.Append("alert('");
+            sb.Append(message);
+            sb.Append("')};");
+            sb.Append("</script>");
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
         }
+
 
         protected async System.Threading.Tasks.Task GetDepartment()
         {            

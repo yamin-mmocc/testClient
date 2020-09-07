@@ -11,6 +11,6 @@ namespace Test.Model
         public string Card_Style { get; set; }
         public bool IsActive { get; set; }
         public DateTime timeStamp { get; set; }
-        public long Card_ID { get; set; }
+        public long? Card_ID { get; set; }
     }
 }

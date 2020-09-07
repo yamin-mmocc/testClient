@@ -33,7 +33,7 @@ namespace Test.View
 
         protected async System.Threading.Tasks.Task PostDepartMent()
         {
-            string url = "https://localhost:44339/api/Departments/CreateDept";
+            string url = "https://localhost:44334/api/Departments/CreateDept";
             using var client = new HttpClient();
 
 
