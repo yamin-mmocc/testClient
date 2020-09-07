@@ -13,5 +13,6 @@ namespace Test.Model
         public long? Role_ID { get; set; }
         public long? myID { get; set; }
         public long? test2_ID { get; set; }
+        public long? yaminID { get; set; }
     }
 }
