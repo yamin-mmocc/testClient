@@ -45,7 +45,7 @@
             <br />
             <br />
             <br />
-            <asp:Image ID="ImgCard" runat="server" Height="100px" Width="141px" />
+            <asp:Image ID="ImgCard"  ImageUrl='<%#Eval("Card_Style") %>' runat="server" Height="100px" Width="141px" />
             <br />
             <br />
             <br />

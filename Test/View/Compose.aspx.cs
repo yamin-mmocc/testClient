@@ -81,6 +81,8 @@ namespace Test.View
                 Value = p.User_ID.ToString()
 
             }).ToArray());
+
+           // var img = reservationList.
         }
 
         protected async System.Threading.Tasks.Task GetCard()
