@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -16,6 +17,10 @@ namespace Test.View
     {
         string deptname = "";
         string username = "";
+
+        List<Cards> cards = new List<Cards>();
+        string cardID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             username = Session["User_Name"].ToString();
@@ -24,10 +29,8 @@ namespace Test.View
             if (!IsPostBack)
             {
                 GetDepartment();
-
                 GetCard();
             }
-
         }
         
 
@@ -88,6 +91,7 @@ namespace Test.View
             List<Cards> reservationList = new List<Cards>();
             HttpClient client = new HttpClient();
             string url = "https://localhost:44334/api/Cards/GetCards";
+
             var response = client.GetAsync(url).Result;
 
             string result = response.Content.ReadAsStringAsync().Result;
@@ -98,11 +102,24 @@ namespace Test.View
            .AddRange(reservationList
             .Select(p => new ListItem()
             {
-                Text = p.Card_Type
-               ,
-                Value = p.Card_ID.ToString()
+                Text = p.Card_Type,Value = p.Card_ID.ToString()
 
             }).ToArray());
+
+            cards.AddRange(reservationList);
+
+        }
+        protected void ddlCard_Selected(object sender, EventArgs e)
+        {
+
+            ddlCard.Items.Clear();
+            GetCard();
+
+            var iRe = cards.Where(a => a.Card_ID.ToString() == ddlCard.SelectedValue);
+            foreach (var re in iRe)
+            {
+                ImgCard.ImageUrl = re.Card_Style;
+            }
         }
 
         protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,7 +132,7 @@ namespace Test.View
             //{
                 GetUserByDept();
             //}
-            
+
             //}
         }
 

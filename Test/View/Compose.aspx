@@ -37,19 +37,20 @@
             <br />
             <asp:Label ID="Label6" runat="server" Text="Card"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlCard" runat="server">
-                <asp:ListItem></asp:ListItem>
+            <asp:DropDownList ID="ddlCard" runat="server" OnSelectedIndexChanged="ddlCard_Selected" AutoPostBack="true">
+                <asp:ListItem>Select Your Card</asp:ListItem>
             </asp:DropDownList>
             <br />
             <br />
             <br />
             <br />
             <br />
-            <asp:Image ID="ImgCard" runat="server" Height="100px" Width="141px" />
+            <asp:Image ID="ImgCard" runat="server" Width="500px"/>
             <br />
             <br />
             <br />
             <asp:Button ID="btnSend" runat="server" Text="Send" />
+            <br />
         </div>
     </form>
 </body>
