@@ -15,9 +15,9 @@ namespace Test.View
 {
     public partial class Compose : System.Web.UI.Page
     {
-        string deptname = "";
+        string deptid = "";
         string username = "";
-
+        string resID = "";
         List<Cards> cards = new List<Cards>();
         string cardID;
 
@@ -56,19 +56,52 @@ namespace Test.View
             }).ToArray());
         }
 
+        //protected async System.Threading.Tasks.Task GetUserByDept()
+        //{
+        //    List<Users> reservationList = new List<Users>();
+        //    HttpClient client = new HttpClient();
+        //    string url = "https://localhost:44334/api/Users/GetUserByDept";
+
+        //    var d = new Departments();
+        //    d.Department_Name = deptname;            
+
+        //    var json = JsonConvert.SerializeObject(d);
+        //    var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //    var response = client.PostAsync(url,data).Result;
+
+        //    string result = response.Content.ReadAsStringAsync().Result;
+        //    reservationList = JsonConvert.DeserializeObject<List<Users>>(result);
+
+        //    //Console.WriteLine(reservationList);
+        //    ddlUser.Items.Clear();
+        //    ddlUser.Items
+        //   .AddRange(reservationList
+        //    .Select(p => new ListItem()
+        //    {
+        //        Text = p.User_Name
+        //       ,
+        //        Value = p.User_ID.ToString()
+
+        //    }).ToArray());
+
+        //   // var img = reservationList.
+        //}
+
         protected async System.Threading.Tasks.Task GetUserByDept()
         {
             List<Users> reservationList = new List<Users>();
             HttpClient client = new HttpClient();
             string url = "https://localhost:44334/api/Users/GetUserByDept";
 
-            var d = new Departments();
-            d.Department_Name = deptname;
+            var u = new Users();
+            u.Department_ID = Convert.ToInt64(deptid);
+            u.User_Name = Session["User_Name"].ToString();
 
-            var json = JsonConvert.SerializeObject(d);
+            var json = JsonConvert.SerializeObject(u);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync(url,data).Result;
+            var response = client.PostAsync(url, data).Result;
 
             string result = response.Content.ReadAsStringAsync().Result;
             reservationList = JsonConvert.DeserializeObject<List<Users>>(result);
@@ -85,7 +118,7 @@ namespace Test.View
 
             }).ToArray());
 
-           // var img = reservationList.
+            // var img = reservationList.
         }
 
         protected async System.Threading.Tasks.Task GetCard()
@@ -129,7 +162,7 @@ namespace Test.View
 
             // (!IsPostBack)
             //{
-            deptname = ddlDept.SelectedItem.ToString();
+            deptid = ddlDept.SelectedValue.ToString();
             //if (!IsPostBack)
             //{
                 GetUserByDept();
@@ -151,18 +184,26 @@ namespace Test.View
         //Start PPTA Add
         protected void click_SendMsg(object sender, EventArgs e)
         {
-            string url = "https://localhost:44334/api/Cards/ComposeToLogSent";
-            using var client = new HttpClient();
-            var msg = new LogSents();
-            msg.CreatedDateTime = DateTime.Now;
-            msg.Card_ID = Convert.ToInt64(ddlCard.SelectedValue);
-            msg.Status_Code = 1;
-            msg.Sender_ID = Convert.ToInt64(Session["User_ID"]);
-            msg.Receiver_ID = Convert.ToInt64(ddlUser.SelectedValue);
-            msg.Message_ID = 1;
-            msg.MessageText = txt_Msg.Text;
+            saveLogSend();
+            savelogReceive();
+        }
+        //End PPTA Add
 
-            var json = JsonConvert.SerializeObject(msg);
+        public void saveLogSend()
+        {
+            string url = "https://localhost:44334/api/LogSends/SaveSends";
+            using var client = new HttpClient();
+            resID = ddlUser.SelectedValue.ToString();
+            var ls = new LogSends();
+            ls.CreatedDateTime = DateTime.Now;
+            ls.Card_ID = Convert.ToInt64(ddlCard.SelectedValue);
+            ls.Status_Code = 1;
+            ls.Sender_ID = Convert.ToInt64(Session["User_ID"]);
+            ls.Receiver_ID = Convert.ToInt64(resID);
+            ls.replyMsg = "";
+            ls.MessageText = txt_Msg.Text;
+
+            var json = JsonConvert.SerializeObject(ls);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = client.PostAsync(url, data).Result;
@@ -171,6 +212,27 @@ namespace Test.View
 
             testServer.Text = result;
         }
-        //End PPTA Add
+
+        public void savelogReceive()
+        {
+            string url = "https://localhost:44334/api/LogReceives/SaveReceives";
+            using var client = new HttpClient();
+            resID = ddlUser.SelectedValue.ToString();
+            var lr = new LogRecieves();
+            lr.CreatedDateTime = DateTime.Now;
+            lr.Card_ID = Convert.ToInt64(ddlCard.SelectedValue);
+            lr.Status_Code = 2;
+            lr.Sender_ID = Convert.ToInt64(resID);
+            lr.Receiver_ID = Convert.ToInt64(Session["User_ID"]);
+            lr.replyMsg = "";
+            var json = JsonConvert.SerializeObject(lr);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, data).Result;
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            testServer.Text = result;
+        }
     }
 }

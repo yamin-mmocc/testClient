@@ -504,7 +504,7 @@
     <Compile Include="Model\Cards.cs" />
     <Compile Include="Model\Departments.cs" />
     <Compile Include="Model\LogRecieves.cs" />
-    <Compile Include="Model\LogSents.cs" />
+    <Compile Include="Model\LogSends.cs" />
     <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\UserDepartmentRole.cs" />
     <Compile Include="Repository\ThanksCardRepository.cs" />

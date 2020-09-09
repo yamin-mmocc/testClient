@@ -7,8 +7,18 @@ namespace Test.Model
 {
     public class LogRecieves
     {
+        public DateTime CreatedDateTime { get; set; }
+        public string replyMsg { get; set; }
         public long? ReceiveLog_ID { get; set; }
+
         public int? Status_Code { get; set; }
-        public long? SendLog_ID { get; set; }
+
+        public long? Card_ID { get; set; }
+
+
+        public long? Sender_ID { get; set; }
+
+        public long? Receiver_ID { get; set; }
+
     }
 }

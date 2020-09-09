@@ -46,7 +46,7 @@ namespace Test.View
 
             GetUserInfoByName();
 
-            if(DataCommon.LoginRoleType == "Developer")
+            if (DataCommon.LoginRoleType == "Developer")
             {
                 //AdminHomePage admin = new AdminHomePage();
                 //admin.Visible=true; // Shows Form2
@@ -57,7 +57,7 @@ namespace Test.View
             else
             {
                 Session["User_Name"] = txtusername.Text.Trim();
-                Response.Redirect("AdminHomePage.aspx");
+                Response.Redirect("Compose.aspx");
                 Session.RemoveAll();
             }
         }
@@ -69,7 +69,7 @@ namespace Test.View
             string url = "https://localhost:44334/api/Users/GetUserInfoByName";
 
             var udr = new UserDepartmentRole();
-            udr.User_Name = txtusername.Text;
+            udr.User_Name = txtusername.Text.Trim();
 
             var json = JsonConvert.SerializeObject(udr);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
