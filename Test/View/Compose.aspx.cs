@@ -145,5 +145,30 @@ namespace Test.View
             //GetUserByDept(deptid);
             //}
         }
+
+        //Start PPTA Add
+        protected void click_SendMsg(object sender, EventArgs e)
+        {
+            string url = "https://localhost:44334/api/Cards/ComposeToLogSent";
+            using var client = new HttpClient();
+            var msg = new LogSents();
+            msg.CreatedDateTime = DateTime.Now;
+            msg.Card_ID = Convert.ToInt64(ddlCard.SelectedValue);
+            msg.Status_Code = 1;
+            msg.Sender_ID = Convert.ToInt64(Session["User_ID"]);
+            msg.Receiver_ID = Convert.ToInt64(ddlUser.SelectedValue);
+            msg.Message_ID = 1;
+            msg.MessageText = txt_Msg.Text;
+
+            var json = JsonConvert.SerializeObject(msg);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, data).Result;
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            testServer.Text = result;
+        }
+        //End PPTA Add
     }
 }
