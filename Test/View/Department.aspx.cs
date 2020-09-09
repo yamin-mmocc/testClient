@@ -36,6 +36,22 @@ namespace Test.View
             string url = "https://localhost:44334/api/Departments/CreateDept";
             using var client = new HttpClient();
 
+            var dept = new Departments();
+            //dept.Department_ID = 3;
+            dept.Department_Name = txtdeptname.Text.Trim();
+            dept.IsActive = true;
+            dept.timeStamp = DateTime.Now;
+
+            var json = JsonConvert.SerializeObject(dept);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync(url, data).Result;
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+
+            Label2.Text = result.ToString();
+
 
             //Departments dept = new Departments();
             //if (txtdeptname.Text.Trim() != null)
@@ -56,21 +72,7 @@ namespace Test.View
 
             //Label2.Text = result.ToString();
 
-            var dept = new Departments();
-            //dept.Department_ID = 3;
-            dept.Department_Name = txtdeptname.Text.Trim();
-            dept.IsActive = true;
-            dept.timeStamp = DateTime.Now;
 
-            var json = JsonConvert.SerializeObject(dept);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response =  client.PostAsync(url, data).Result;
-
-            string result = response.Content.ReadAsStringAsync().Result;
-            
-
-           Label2.Text = result.ToString();
         }
     }
 

@@ -60,8 +60,6 @@ namespace Test.View
 
             string result = response.Content.ReadAsStringAsync().Result;
             reservationList = JsonConvert.DeserializeObject<List<Departments>>(result);
-
-            //Console.WriteLine(reservationList);
             ddlDept.Items
            .AddRange(reservationList
             .Select(p => new ListItem()
@@ -71,6 +69,8 @@ namespace Test.View
                 Value = p.Department_ID.ToString()
 
             }).ToArray());
+
+
 
         }
 
