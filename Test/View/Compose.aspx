@@ -49,8 +49,13 @@
             <br />
             <br />
             <br />
-            <asp:Button ID="btnSend" runat="server" Text="Send" />
+            <asp:TextBox ID="txt_Msg" runat="server" Rows="3"/>
             <br />
+            <br />
+            <br />
+            <asp:Button ID="btnSend" runat="server" Text="Send" OnClick="click_SendMsg"/>
+            <br />
+            <asp:Label ID="testServer" runat="server" />
         </div>
     </form>
 </body>

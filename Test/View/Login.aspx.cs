@@ -84,7 +84,7 @@ namespace Test.View
             DataCommon.LoginDeptName = reservationList[0].Department_Name.ToString();
             DataCommon.LoginRoleType = reservationList[0].Role_Type.ToString();
 
-            //Session["User_ID"] = Convert.ToInt64(reservationList[0].User_ID);
+            Session["User_ID"] = DataCommon.LoginUserID;
         }
     }
 }
