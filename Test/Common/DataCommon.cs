@@ -21,5 +21,10 @@ namespace Test.Common
         public static string LoginRoleType = "";
 
 
+        //LogSends LogReceives Data
+        public static string LsSenderID = "";
+        public static string LsReseiverID = "";
+        public static string CardID = "";
+        public static DateTime createdate = DateTime.Now;
     }
 }

@@ -481,8 +481,10 @@
     <Content Include="View\Compose.aspx" />
     <Content Include="View\Department.aspx" />
     <Content Include="View\DepartmentList.aspx" />
+    <Content Include="View\InboxHome.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\RoleCreate.aspx" />
+    <Content Include="View\Send.aspx" />
     <Content Include="View\UserHomePage.aspx" />
     <Content Include="View\UserList.aspx" />
     <Content Include="View\UserRegister.aspx" />
@@ -503,9 +505,11 @@
     <Compile Include="Common\DataCommon.cs" />
     <Compile Include="Model\Cards.cs" />
     <Compile Include="Model\Departments.cs" />
+    <Compile Include="Model\InboxModel.cs" />
     <Compile Include="Model\LogRecieves.cs" />
     <Compile Include="Model\LogSends.cs" />
     <Compile Include="Model\Roles.cs" />
+    <Compile Include="Model\SendModel.cs" />
     <Compile Include="Model\UserDepartmentRole.cs" />
     <Compile Include="Repository\ThanksCardRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -577,6 +581,13 @@
     <Compile Include="View\DepartmentList.aspx.designer.cs">
       <DependentUpon>DepartmentList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\InboxHome.aspx.cs">
+      <DependentUpon>InboxHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\InboxHome.aspx.designer.cs">
+      <DependentUpon>InboxHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -590,6 +601,13 @@
     </Compile>
     <Compile Include="View\RoleCreate.aspx.designer.cs">
       <DependentUpon>RoleCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Send.aspx.cs">
+      <DependentUpon>Send.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Send.aspx.designer.cs">
+      <DependentUpon>Send.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\UserHomePage.aspx.cs">
       <DependentUpon>UserHomePage.aspx</DependentUpon>

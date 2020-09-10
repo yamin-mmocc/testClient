@@ -185,21 +185,23 @@ namespace Test.View
         protected void click_SendMsg(object sender, EventArgs e)
         {
             saveLogSend();
-            savelogReceive();
         }
         //End PPTA Add
 
         public void saveLogSend()
         {
+            List<LogSends> reservationList = new List<LogSends>();
             string url = "https://localhost:44334/api/LogSends/SaveSends";
             using var client = new HttpClient();
-            resID = ddlUser.SelectedValue.ToString();
+            DataCommon.LsReseiverID = ddlUser.SelectedValue.ToString();
+            DataCommon.CardID = ddlCard.SelectedValue.ToString();
+            DataCommon.LsSenderID = Session["User_ID"].ToString();
             var ls = new LogSends();
-            ls.CreatedDateTime = DateTime.Now;
-            ls.Card_ID = Convert.ToInt64(ddlCard.SelectedValue);
+            ls.CreatedDateTime = DataCommon.createdate;
+            ls.Card_ID = Convert.ToInt64(DataCommon.CardID);
             ls.Status_Code = 1;
-            ls.Sender_ID = Convert.ToInt64(Session["User_ID"]);
-            ls.Receiver_ID = Convert.ToInt64(resID);
+            ls.Sender_ID = Convert.ToInt64(DataCommon.LsSenderID);
+            ls.Receiver_ID = Convert.ToInt64(DataCommon.LsReseiverID);
             ls.replyMsg = "";
             ls.MessageText = txt_Msg.Text;
 
@@ -208,22 +210,39 @@ namespace Test.View
 
             var response = client.PostAsync(url, data).Result;
 
-            string result = response.Content.ReadAsStringAsync().Result;
+            
 
-            testServer.Text = result;
+            //testServer.Text = result;
+
+            if (response != null)
+            {
+                savelogReceive();
+            }
+            else
+            {
+                string result = response.Content.ReadAsStringAsync().Result;
+                var deljson = JsonConvert.SerializeObject(result);
+                var deldata = new StringContent(deljson, Encoding.UTF8, "application/json");
+                string delurl = "https://localhost:44334/api/LogSends/DeleteSend";
+                var delresponse = client.PostAsync(delurl, deldata);
+                string delresult = response.Content.ReadAsStringAsync().Result;
+
+                testServer.Text = delresult;
+
+            }
         }
 
         public void savelogReceive()
         {
             string url = "https://localhost:44334/api/LogReceives/SaveReceives";
             using var client = new HttpClient();
-            resID = ddlUser.SelectedValue.ToString();
+            //resID = ddlUser.SelectedValue.ToString();
             var lr = new LogRecieves();
-            lr.CreatedDateTime = DateTime.Now;
-            lr.Card_ID = Convert.ToInt64(ddlCard.SelectedValue);
+            lr.CreatedDateTime = DataCommon.createdate;
+            lr.Card_ID = Convert.ToInt64(DataCommon.CardID);
             lr.Status_Code = 2;
-            lr.Sender_ID = Convert.ToInt64(resID);
-            lr.Receiver_ID = Convert.ToInt64(Session["User_ID"]);
+            lr.Sender_ID = Convert.ToInt64(DataCommon.LsReseiverID);
+            lr.Receiver_ID = Convert.ToInt64(DataCommon.LsSenderID);
             lr.replyMsg = "";
             var json = JsonConvert.SerializeObject(lr);
             var data = new StringContent(json, Encoding.UTF8, "application/json");

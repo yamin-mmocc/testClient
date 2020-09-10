@@ -51,13 +51,13 @@ namespace Test.View
                 //AdminHomePage admin = new AdminHomePage();
                 //admin.Visible=true; // Shows Form2
                 Session["User_Name"] = txtusername.Text.Trim();
-                Response.Redirect("Compose.aspx");
+                Response.Redirect("Send.aspx");
                 Session.RemoveAll();
             }
             else
             {
                 Session["User_Name"] = txtusername.Text.Trim();
-                Response.Redirect("Compose.aspx");
+                Response.Redirect("Send.aspx");
                 Session.RemoveAll();
             }
         }
