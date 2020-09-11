@@ -244,6 +244,7 @@ namespace Test.View
             lr.Sender_ID = Convert.ToInt64(DataCommon.LsReseiverID);
             lr.Receiver_ID = Convert.ToInt64(DataCommon.LsSenderID);
             lr.replyMsg = "";
+            lr.MessageText = txt_Msg.Text;
             var json = JsonConvert.SerializeObject(lr);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
