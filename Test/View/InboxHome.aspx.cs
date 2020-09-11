@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Test.Common;
 using Test.Model;
 
 namespace Test.View
@@ -17,7 +18,7 @@ namespace Test.View
         {
             InboxData();
         }
-    
+
 
 
         public void InboxData()
@@ -40,6 +41,17 @@ namespace Test.View
             GridView1.DataSource = reservationList;
             GridView1.DataBind();
 
+        }
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = GridView1.SelectedRow;
+            DataCommon.Sender_Name = GridView1.SelectedRow.Cells[0].Text;
+            DataCommon.Sender_Department = GridView1.SelectedRow.Cells[1].Text;
+            GridView1.Columns[13].Visible = true;
+            DataCommon.Card_Style = GridView1.SelectedRow.Cells[13].Text;
+            Label1.Text = DataCommon.Card_Style;
+            //Label2.Text = DataCommon.Sender_Department;
+            Response.Redirect("InboxView.aspx");
         }
     }
 }

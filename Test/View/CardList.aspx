@@ -12,7 +12,7 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="Card_Type" HeaderText="Card Type" />
-                    <asp:TemplateField HeaderText="Card Style">
+                    <asp:TemplateField HeaderText="Card Style" Visible="False">
                         <ItemTemplate>
                             <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("Card_Style") %>'  Width="200" Height="200"/>
                         </ItemTemplate>
@@ -21,7 +21,6 @@
                     <asp:BoundField DataField="IsActive" HeaderText="IsActive" Visible="False" />
                     <asp:BoundField DataField="timestamp" HeaderText="Time Stamp" />
                     <asp:BoundField DataField="Card_ID" HeaderText="Card ID" />
-                    
                 </Columns>
 
             </asp:GridView>

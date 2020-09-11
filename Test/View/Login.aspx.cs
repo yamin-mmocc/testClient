@@ -46,18 +46,18 @@ namespace Test.View
 
             GetUserInfoByName();
 
-            if (DataCommon.LoginRoleType == "Developer")
+            if (DataCommon.LoginRoleType == "Staff")
             {
                 //AdminHomePage admin = new AdminHomePage();
                 //admin.Visible=true; // Shows Form2
                 Session["User_Name"] = txtusername.Text.Trim();
-                Response.Redirect("Send.aspx");
+                Response.Redirect("InboxHome.aspx");
                 Session.RemoveAll();
             }
             else
             {
                 Session["User_Name"] = txtusername.Text.Trim();
-                Response.Redirect("Send.aspx");
+                Response.Redirect("InboxHome.aspx");
                 Session.RemoveAll();
             }
         }
