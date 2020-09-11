@@ -482,6 +482,7 @@
     <Content Include="View\Department.aspx" />
     <Content Include="View\DepartmentList.aspx" />
     <Content Include="View\InboxHome.aspx" />
+    <Content Include="View\InboxView.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\RoleCreate.aspx" />
     <Content Include="View\Send.aspx" />
@@ -587,6 +588,13 @@
     </Compile>
     <Compile Include="View\InboxHome.aspx.designer.cs">
       <DependentUpon>InboxHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\InboxView.aspx.cs">
+      <DependentUpon>InboxView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\InboxView.aspx.designer.cs">
+      <DependentUpon>InboxView.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

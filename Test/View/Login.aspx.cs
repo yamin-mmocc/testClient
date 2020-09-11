@@ -37,30 +37,29 @@ namespace Test.View
 
             string result = response.Content.ReadAsStringAsync().Result;
 
-            if (!result.Contains("Denied"))
-            {
-                Label3.Text = "Login Success";
-                GetUserInfoByName();
-                if (DataCommon.LoginRoleType == "Developer")
-                {
-                    //AdminHomePage admin = new AdminHomePage();
-                    //admin.Visible=true; // Shows Form2
-                    Session["User_Name"] = txtusername.Text.Trim();
-                    Response.Redirect("InboxHome.aspx");
-                    Session.RemoveAll();
-                }
-                else
-                {
-                    Session["User_Name"] = txtusername.Text.Trim();
-                    Response.Redirect("InboxHome.aspx");
-                    Session.RemoveAll();
-                }
-            }
-                
-            else
-                Label3.Text = "Username or Password is Incorrect";
+            if(result != null)
 
-            //DataCommon.LoginUserName = txtusername.Text.Trim();      
+
+            Label3.Text = "Login Success";
+
+            //DataCommon.LoginUserName = txtusername.Text.Trim();
+
+            GetUserInfoByName();
+
+            if (DataCommon.LoginRoleType == "Staff")
+            {
+                //AdminHomePage admin = new AdminHomePage();
+                //admin.Visible=true; // Shows Form2
+                Session["User_Name"] = txtusername.Text.Trim();
+                Response.Redirect("InboxHome.aspx");
+                Session.RemoveAll();
+            }
+            else
+            {
+                Session["User_Name"] = txtusername.Text.Trim();
+                Response.Redirect("InboxHome.aspx");
+                Session.RemoveAll();
+            }
         }
 
         protected async System.Threading.Tasks.Task GetUserInfoByName()

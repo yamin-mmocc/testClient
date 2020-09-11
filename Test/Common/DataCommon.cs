@@ -26,5 +26,13 @@ namespace Test.Common
         public static string LsReseiverID = "";
         public static string CardID = "";
         public static DateTime createdate = DateTime.Now;
+
+        //myatsu add start
+        public static string Sender_Name = "";
+        public static string Sender_Department = "";
+        public static string Card_Style = "";
+        public static string Message_Text = "";
+        public static string Date = "";
+        //myatsu add end
     }
 }
